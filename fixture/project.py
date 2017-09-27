@@ -1,6 +1,5 @@
 import re
 from model import Project
-from model.utils import trim_spaces
 
 class ProjectHelper:
     def __init__(self, app):
@@ -53,7 +52,7 @@ class ProjectHelper:
         wd.find_element_by_name("description").send_keys(project.description)
 
     def open_project_edit_page(self, project):
-        self.app.wd.find_element_by_link_text(trim_spaces(project.name)).click()
+        self.app.wd.find_element_by_link_text(project.name).click()
 
     def remove_project(self, project):
         wd = self.app.wd
