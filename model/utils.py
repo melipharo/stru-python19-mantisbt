@@ -9,3 +9,7 @@ def random_string(prefix="", max_len=10):
 
 def trim_spaces(string):
     return re.sub(" +", " ", string).strip(" ")
+
+def random_username(prefix="", max_len=10):
+    symbols = string.ascii_letters
+    return prefix + "".join([random.choice(symbols) for _ in range(random.randrange(max_len))])

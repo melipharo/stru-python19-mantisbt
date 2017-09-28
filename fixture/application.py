@@ -1,9 +1,12 @@
 from selenium import webdriver
 from fixture.session import SessionHelper
 from fixture.project import ProjectHelper
+from fixture.james import JamesHelper
+from fixture.signup import SignupHelper
+from fixture.mail import MailHelper
 
 class Application:
-    def __init__(self, browser, base_url):
+    def __init__(self, browser, config):
         if browser == "firefox":
             self.wd = webdriver.Firefox(
                 firefox_binary="C:\\Program Files\\Mozilla Firefox\\firefox.exe"
@@ -15,10 +18,15 @@ class Application:
         else:
             raise ValueError("Unknown browser {}".format(browser))
 
-        self.base_url = base_url
+        self.config = config
+        self.base_url = self.config["web"]["baseUrl"]
 
         self.session = SessionHelper(self)
         self.project = ProjectHelper(self)
+        self.james = JamesHelper(self)
+        self.signup = SignupHelper(self)
+        self.mail = MailHelper(self)
+
 
     def open_home_page(self):
         self.wd.get(self.base_url)
