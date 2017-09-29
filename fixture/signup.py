@@ -1,4 +1,5 @@
 import re
+import time
 
 class SignupHelper:
     def __init__(self, app):
@@ -25,11 +26,16 @@ class SignupHelper:
             wd.get(url)
 
             wd.find_element_by_name("password").click()
+            wd.find_element_by_name("password_confirm").click()
+
+            wd.find_element_by_name("password").click()
             wd.find_element_by_name("password").clear()
             wd.find_element_by_name("password").send_keys(password)
             wd.find_element_by_name("password_confirm").click()
             wd.find_element_by_name("password_confirm").clear()
             wd.find_element_by_name("password_confirm").send_keys(password)
+            wd.find_element_by_name("password").click()
+            time.sleep(3)
             wd.find_element_by_css_selector('input[value="Update User"]').click()
         else:
             assert False, "check your email server: seems like it doesn't works well"
