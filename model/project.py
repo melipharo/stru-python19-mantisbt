@@ -1,5 +1,5 @@
 from sys import maxsize
-from model.utils import trim_spaces
+from model.utils import trim_spaces, random_string
 
 class Project:
     def __init__(self, id=None, name=None, description=None):
@@ -28,3 +28,10 @@ class Project:
 
     def __lt__(self, other):
         return self.id_or_max() < other.id_or_max()
+
+    @staticmethod
+    def random():
+        return Project(
+            name=random_string(),
+            description=random_string()
+        )
